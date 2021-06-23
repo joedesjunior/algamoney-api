@@ -52,7 +52,7 @@ public class PessoaResource {
 	@GetMapping("{id}")
 	public ResponseEntity<Pessoa> listarPessoaPorId(@PathVariable Long id) {
 		Pessoa pessoaRetorno = pessoaRepository.findById(id).orElse(null);
-		return pessoaRetorno != null ? ResponseEntity.ok(pessoaRetorno) : ResponseEntity.notFound().build();
+		return pessoaRetorno != null ? ResponseEntity.ok(pessoaRetorno) : ResponseEntity.noContent().build();
 	}
 	
 	@DeleteMapping("/{id}")
@@ -68,8 +68,6 @@ public class PessoaResource {
 		return ResponseEntity.ok(pessoaSalva);
 	}
 	
-	//localhost:8080/pessoas/{id}/status
-	//TODO - Método PUT para alterar apenas o status do usuário 
 	@PutMapping("/{id}/status")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void editarStatusPessoa(@PathVariable Long id, @RequestBody Boolean status) {
